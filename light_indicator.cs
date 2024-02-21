@@ -10,15 +10,15 @@ public class LightIndicator{
     public LightIndicator(Boiler boiler){
         _boiler = boiler;
     }
-    public string UpdateColor(){
-        if(!_boiler.IsWaterLevelSufficient){
-            return "Red";
-        }
-        else
-        {
-            return "Green"; //update and add colors
-        }
-    }
+    // public string UpdateColor(){
+    //     if(!_boiler.IsWaterLevelSufficient){
+    //         return "Red";
+    //     }
+    //     else
+    //     {
+    //         return "Green"; //update and add colors
+    //     }
+    // }
     
 
 }
