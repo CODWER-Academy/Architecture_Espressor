@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Pot_Mechanism;
 public class Pot{
@@ -9,6 +10,7 @@ public readonly List<String> Receptacle = new List<String>(3)
 {
     "arabica", "liberica", "robusta"
 }; 
+public bool ReceptacleStatus;
 //user has 3 variants of coffee sorts "arabica", "liberica", "robusta" 
 //receptacle va avea metoda insert coffee (userul va alege din cele 3 sorturi)
 public Pot()
@@ -18,17 +20,22 @@ public Pot()
 
 public bool InsertCoffee(string coffeeSort)
 {
+    Console.WriteLine("Inserting the coffee...");
+    Thread.Sleep(3000);
     if(Receptacle.Contains(coffeeSort))
     {
     Console.WriteLine($"{coffeeSort} has been successfully insterted");
-    return true;
+    ReceptacleStatus = true;
 }
 else
 {
     Console.WriteLine("Invalid coffee sort. Please insert Arabica Liberica or Robusta");
-    return false;
+    ReceptacleStatus = false;
 }
+return ReceptacleStatus;
 
 }
+
+
 
 }

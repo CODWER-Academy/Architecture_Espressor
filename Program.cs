@@ -22,11 +22,26 @@ using Espressor_Components;
             {
                 case 1:                    
                     espressor.WaterLevelChecker(0);
-                    //Console.WriteLine(boiler.ResettingPressure());
+                    //Console.WriteLine(boiler.PressureSetting());
+                    Console.WriteLine("Choose the next step Insert Coffee Sort.");
+
                 //check pressure in boiler
     
-                    break;
+                break;
+                case 2:
+                 Console.WriteLine("Choose your coffe arabica, robusta, liberica");
+                string coffee_sort = Console.ReadLine().ToLower();
+    // bool result = myPot.InsertCoffee(coffee);
+                    espressor.pot.InsertCoffee(coffee_sort);
+                    Console.WriteLine("Choose the next step Make Coffee.");
+                break;
+                case 3:
+                espressor.WaterDeliver();
+                break;
                 // Other case handling...
+                default:
+                Console.WriteLine("Choose the option by entering its number from the list bellow");
+                break;
             }
         }
     }
