@@ -4,16 +4,15 @@ using Light_Indicator;
 using Pot_Mechanism;
 using Espressor_Components;
 
-
     public class Program
 {
     public static void Main(string[] args)
     {
         Espressor espressor = new Espressor();
-        bool userDone = false;
-        Boiler boiler = new Boiler(true);
-
-        while (!userDone)
+        //bool userDone = false;
+        Boiler boiler = new Boiler();
+        
+        while (espressor.StartEspressor())
         {
             Console.WriteLine("1. Add Water\n2. Insert Coffee Sort\n3. Make Coffee\n4. Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -38,6 +37,19 @@ using Espressor_Components;
                 case 3:
                 espressor.WaterDeliver();
                 break;
+                case 4:
+                Console.WriteLine("Do you want to turn on the Waiting Regime?");
+                string user_answer = Console.ReadLine().ToLower();
+                if (user_answer == "yes"){
+                    //turn on the waiting regim with heating and so on
+                    Console.WriteLine(espressor.heat_pot());
+                }
+                else
+                {
+                    Console.WriteLine("You can take your coffee! Bon appetit!");
+                }
+                break;
+
                 // Other case handling...
                 default:
                 Console.WriteLine("Choose the option by entering its number from the list bellow");

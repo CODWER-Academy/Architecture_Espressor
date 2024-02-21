@@ -1,3 +1,4 @@
+using System.Threading.Tasks.Dataflow;
 using Boiler_elements;
 using Pot_Mechanism;
 
@@ -7,14 +8,14 @@ public class Espressor{
     public Pot pot;
     public string pressure_status;
     public int WaterLevel; 
-    //private bool ReceptacleStatus;
     private bool WaterStatus = false;
-    public bool receptacle_status;
-    
-//MakeCoffee() 
+    public int PotTemperature;
+    //public bool StartButton = false; //by default is false, when this button is pressed by user it becomes true
+
+
 
     public Espressor(){
-        boiler = new Boiler(true);//de corectat ca sa primeasca fara argumente
+        boiler = new Boiler();
         pot = new Pot();
     }
 
@@ -32,7 +33,6 @@ public class Espressor{
                 Console.WriteLine("The amount should be in range 150 - 750 ml. try again!!!");
 
             }
-            //value = false;
             Console.WriteLine("Enter the amount of water in ml (150 - 750): ");
             amount = Convert.ToInt32(Console.ReadLine());
             firstAttempt = false;
@@ -51,13 +51,14 @@ public class Espressor{
     }
 
     public bool WaterDeliver(){
-        receptacle_status = pot.ReceptacleStatus;
+       bool receptacle_status = pot.ReceptacleStatus;
     if (receptacle_status && WaterStatus)
     {
         Console.WriteLine("The hot water is delivering to the pot...");
+        Thread.Sleep(3000);
+        Console.WriteLine("Delivered.\nMaking the coffee...");
         Thread.Sleep(6000);
-        Console.WriteLine("Delivered");
-
+        Console.WriteLine("The coffee is done\n");
         return true;
     }
     else
@@ -66,7 +67,43 @@ public class Espressor{
         return false;
     }
     }
+
+    public int heat_pot(){
+        Random rnd = new Random();
+        int temperature = 42;
+        for(int i = 42; i < 77; i+= 7 ){
+            temperature = i;
+            Console.WriteLine("The temperature at the moment is... ");
+            Thread.Sleep(3000);
+        Console.WriteLine(i);
+        
+        }
+        Console.WriteLine("Constant maintaining this temperature:");
+        PotTemperature = temperature;
+        Console.WriteLine("Press exit to take out the pot");
+        return PotTemperature;
     }
+    public bool StartEspressor(){
+        Console.WriteLine("To turn on the espressor write start");
+        bool value = false;
+        while(!value){
+        string user_command = Console.ReadLine().ToLower();
+       if (user_command != "start"){
+        Console.WriteLine("Not a valid command, try again");
+        value = false;
+       }
+    
+       else
+       {
+        value = true;
+       }
+    }
+        return value;
+    }
+    }
+
+    
+
 
 
 //Think about how to use pot and plate heater + plate sensor. Maybe after when coffee is done, 

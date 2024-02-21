@@ -6,16 +6,13 @@ public class Boiler{
     public int amount;
     private int WaterTemperaute;
     public string PressureStatus;
-    public bool Start_button = false; //by default is false, when this button is pressed by user it becomes true
     
 
-public Boiler(bool StartButton) //de schimbat pe protected
+public Boiler() //de schimbat pe protected
 {
     //Espressor espressor = new Espressor();
 WaterTemperaute = heat_boiler();
 //PressureStatus = ResettingPressure();
-
-StartButton = Start_button;
 }
 
 private int heat_boiler(){
