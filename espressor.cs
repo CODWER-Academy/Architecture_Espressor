@@ -8,9 +8,10 @@ public class Espressor{
     public Pot pot;
     public string pressure_status;
     public int WaterLevel; 
-    private bool WaterStatus = false;
+    public bool WaterStatus = false;
     public int PotTemperature;
-    //public bool StartButton = false; //by default is false, when this button is pressed by user it becomes true
+    public bool waterdeliver_status = false;
+    
 
 
 
@@ -52,37 +53,46 @@ public class Espressor{
 
     public bool WaterDeliver(){
        bool receptacle_status = pot.ReceptacleStatus;
-    if (receptacle_status && WaterStatus)
+       if (receptacle_status && WaterStatus)
     {
         Console.WriteLine("The hot water is delivering to the pot...");
         Thread.Sleep(3000);
         Console.WriteLine("Delivered.\nMaking the coffee...");
         Thread.Sleep(6000);
         Console.WriteLine("The coffee is done\n");
-        return true;
+        waterdeliver_status = true;
     }
     else
     {
-        Console.WriteLine("An error occures with water delivering, try again.");
-        return false;
+        Console.WriteLine("You have no access to this step. Done the steps above.");
+        waterdeliver_status = false;
     }
+    return waterdeliver_status;
     }
 
-    public int heat_pot(){
+    public int heat_pot(){ //start the WAITING REGIME. It heats the coffee till 77 degrees and then mantain the constant temperature, 
+    //till user will take out the pot
         Random rnd = new Random();
-        int temperature = 42;
-        for(int i = 42; i < 77; i+= 7 ){
+        int temperature = 35;
+        if(waterdeliver_status){
+        for(int i = 35; i < 77; i+= 7 ){
             temperature = i;
             Console.WriteLine("The temperature at the moment is... ");
-            Thread.Sleep(3000);
+            Thread.Sleep(1500);
         Console.WriteLine(i);
         
         }
         Console.WriteLine("Constant maintaining this temperature:");
         PotTemperature = temperature;
         Console.WriteLine("Press exit to take out the pot");
-        return PotTemperature;
+        //return PotTemperature;
     }
+    else{
+        Console.WriteLine("You have no access to this step. Done the steps above.");
+    }
+    return PotTemperature;
+    }
+
     public bool StartEspressor(){
         Console.WriteLine("To turn on the espressor write start");
         bool value = false;

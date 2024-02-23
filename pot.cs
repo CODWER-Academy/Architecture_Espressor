@@ -1,8 +1,10 @@
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
+using Espressor_Components;
 
 namespace Pot_Mechanism;
 public class Pot{
+    //public Espressor espressor;
 //obiect PlateHeater care incalzeste pana la o temp anumita si cand cana e luata, el se opreste (1 sau 2 metode)
 
 //public bool Plate_sensor = false; //by default is false, when the coffee is poured in the pot it becomes true
@@ -15,6 +17,7 @@ public bool ReceptacleStatus;
 //receptacle va avea metoda insert coffee (userul va alege din cele 3 sorturi)
 public Pot()
 {
+//espressor = new Espressor();
 
 }
 
@@ -22,18 +25,18 @@ public bool InsertCoffee(string coffeeSort)
 {
     Console.WriteLine("Inserting the coffee...");
     Thread.Sleep(3000);
-    if(Receptacle.Contains(coffeeSort))
-    {
-    Console.WriteLine($"{coffeeSort} has been successfully insterted");
-    ReceptacleStatus = true;
-}
-else
-{
-    Console.WriteLine("Invalid coffee sort. Please insert Arabica Liberica or Robusta");
-    ReceptacleStatus = false;
-}
-return ReceptacleStatus;
+        if(Receptacle.Contains(coffeeSort))
+        {
+        Console.WriteLine($"{coffeeSort} has been successfully insterted");
+        ReceptacleStatus = true;
+        }
+        else
+        {
+        Console.WriteLine("Invalid coffee sort. Please insert Arabica Liberica or Robusta");
+        ReceptacleStatus = false;   
+        }
 
+        return ReceptacleStatus;
 }
 
 
