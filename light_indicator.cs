@@ -1,5 +1,5 @@
-//va avea methode de aprindere cand espr e pornit, va avea 3-4 culori de indicatii
-//blue - in process, red - too much/little water, yellow - processes are ready
+//Not implemented light signals, because I thought it would be more clear to use textual explanations. In case the espressor will have a graphical representation, 
+//i will use the light indicator :)
 using Boiler_elements;
 
 namespace Light_Indicator;

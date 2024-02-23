@@ -1,4 +1,4 @@
-using System.Threading.Tasks.Dataflow;
+
 using Boiler_elements;
 using Pot_Mechanism;
 
@@ -12,15 +12,10 @@ public class Espressor{
     public int PotTemperature;
     public bool waterdeliver_status = false;
     
-
-
-
     public Espressor(){
         boiler = new Boiler();
         pot = new Pot();
     }
-
-
 
  public bool WaterLevelChecker(int amount)
     {
@@ -30,7 +25,8 @@ public class Espressor{
         while(!WaterStatus){
         if (amount < 150 || amount > 750)
         {
-            if(!firstAttempt){
+            if(!firstAttempt){ //I have written this IF, because in Programm class, zero is a parameter for this method,
+            // so without this lines, user's input will never pass the water level checker
                 Console.WriteLine("The amount should be in range 150 - 750 ml. try again!!!");
 
             }
@@ -44,8 +40,6 @@ public class Espressor{
             WaterLevel = amount;
             Console.WriteLine("The amount is good."); 
             boiler.ResettingPressure(amount);
-            
-            
         }
     }
     return WaterStatus; 
@@ -53,7 +47,7 @@ public class Espressor{
 
     public bool WaterDeliver(){
        bool receptacle_status = pot.ReceptacleStatus;
-       if (receptacle_status && WaterStatus)
+       if (receptacle_status && WaterStatus) //if the water level is normal and the coffee is inserted, the hot water will be delivered
     {
         Console.WriteLine("The hot water is delivering to the pot...");
         Thread.Sleep(3000);
@@ -64,7 +58,7 @@ public class Espressor{
     }
     else
     {
-        Console.WriteLine("You have no access to this step. Done the steps above.");
+        Console.WriteLine("You have no access to this step. Done the steps above."); //user cant jump from one step to another. He has to do all steps in consecutive order
         waterdeliver_status = false;
     }
     return waterdeliver_status;
@@ -82,10 +76,8 @@ public class Espressor{
         Console.WriteLine(i);
         
         }
-        Console.WriteLine("Constant maintaining this temperature:");
+        Console.WriteLine($"Constant maintaining this temperature: {temperature}");
         PotTemperature = temperature;
-        Console.WriteLine("Press exit to take out the pot");
-        //return PotTemperature;
     }
     else{
         Console.WriteLine("You have no access to this step. Done the steps above.");
@@ -93,7 +85,7 @@ public class Espressor{
     return PotTemperature;
     }
 
-    public bool StartEspressor(){
+    public bool StartEspressor(){ //Start Button
         Console.WriteLine("To turn on the espressor write start");
         bool value = false;
         while(!value){
@@ -102,7 +94,6 @@ public class Espressor{
         Console.WriteLine("Not a valid command, try again");
         value = false;
        }
-    
        else
        {
         value = true;
@@ -114,11 +105,3 @@ public class Espressor{
 
     
 
-
-
-//Think about how to use pot and plate heater + plate sensor. Maybe after when coffee is done, 
-//deodata to turn on the plate heater to the 50 grade to mantain the tempetature till the user
-// wont take out the pot with coffee.
-//When the user will press EXTRACT THE POT, in the output will appear: WARNING THE POT IS HOT!. 
-
-//Think how to implement the light:)))
