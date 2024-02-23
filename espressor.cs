@@ -45,7 +45,7 @@ public class Espressor{
     return WaterStatus; 
     }
 
-    public bool WaterDeliver(){
+    public bool WaterDeliver(){ //Make Coffee step
        bool receptacle_status = pot.ReceptacleStatus;
        if (receptacle_status && WaterStatus) //if the water level is normal and the coffee is inserted, the hot water will be delivered
     {

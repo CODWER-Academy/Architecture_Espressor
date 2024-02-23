@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using Boiler_elements;
 
 using Espressor_Components;

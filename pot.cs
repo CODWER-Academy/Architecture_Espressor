@@ -27,7 +27,7 @@ public bool InsertCoffee(string coffeeSort)
         }
         else
         {
-        Console.WriteLine("Invalid coffee sort. Please insert Arabica Liberica or Robusta");
+        Console.WriteLine("Invalid coffee sort. Please insert arabica liberica or robusta");
         ReceptacleStatus = false;   
         }
 
